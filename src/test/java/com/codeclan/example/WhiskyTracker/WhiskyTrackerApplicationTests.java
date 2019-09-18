@@ -52,4 +52,10 @@ public class WhiskyTrackerApplicationTests {
 		assertEquals(15, found.get(0).getAge());
 	}
 
+	@Test
+	public void findWhiskiesByRegion() {
+		List<Whisky> found = whiskyRepository.findWhiskiesFromRegion("Speyside");
+		assertEquals("The Macallan Anniversary Malt", found.get(0).getName());
+	}
+
 }

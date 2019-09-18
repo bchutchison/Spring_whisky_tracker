@@ -13,5 +13,7 @@ List<Whisky> findWhiskyByAge(int whiskyAge);
 
 List<Whisky> findWhiskiesFromDistilleryByWhiskyAge(Long id, int age);
 
+List<Whisky> findWhiskiesFromRegion(String region);
+
 
 }

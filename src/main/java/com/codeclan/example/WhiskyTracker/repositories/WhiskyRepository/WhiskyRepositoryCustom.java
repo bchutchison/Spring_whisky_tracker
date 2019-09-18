@@ -8,4 +8,6 @@ public interface WhiskyRepositoryCustom {
 
     List<Whisky> findWhiskiesFromDistilleryByWhiskyAge(Long id, int age);
 
+    List<Whisky> findWhiskiesFromRegion(String region);
+
 }
