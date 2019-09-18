@@ -58,4 +58,10 @@ public class WhiskyTrackerApplicationTests {
 		assertEquals("The Macallan Anniversary Malt", found.get(0).getName());
 	}
 
+	@Test
+	public void findDistilleriesByWhiskyAge() {
+		List<Distillery> found = distilleryRepository.findDistilleriesByWhiskyAge(12);
+		assertEquals("Rosebank", found.get(0).getName());
+	}
+
 }
