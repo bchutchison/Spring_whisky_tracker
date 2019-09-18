@@ -11,6 +11,7 @@ List<Whisky> findWhiskyByYear(int whiskyYear);
 
 List<Whisky> findWhiskyByAge(int whiskyAge);
 
-//List<Whisky> findWhiskiesFromDistilleryByWhiskyAge(int age);
+List<Whisky> findWhiskiesFromDistilleryByWhiskyAge(Long id, int age);
+
 
 }
