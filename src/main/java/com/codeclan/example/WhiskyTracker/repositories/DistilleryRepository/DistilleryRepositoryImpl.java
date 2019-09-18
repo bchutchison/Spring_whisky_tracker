@@ -2,6 +2,7 @@ package com.codeclan.example.WhiskyTracker.repositories.DistilleryRepository;
 
 import com.codeclan.example.WhiskyTracker.models.Distillery;
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,16 @@ public class DistilleryRepositoryImpl implements DistilleryRepositoryCustom {
     @Transactional
     public List<Distillery> findDistilleriesByWhiskyAge(int age) {
         List<Distillery> result = null;
-
-        Session session = entityManager.unwrap(Session.class);
-        Criteria cr = session.createCriteria(Distillery.class);
-        cr.createAlias("whiskies", "whiskyAlias");
-        cr.add(Restrictions.eq("whiskyAlias.age", age));
-        result = cr.list();
-
+try {
+    Session session = entityManager.unwrap(Session.class);
+    Criteria cr = session.createCriteria(Distillery.class);
+    cr.createAlias("whiskies", "whiskyAlias");
+    cr.add(Restrictions.eq("whiskyAlias.age", age));
+    result = cr.list();
+}
+catch (HibernateException ex) {
+    ex.printStackTrace();
+}
         return result;
     }
 

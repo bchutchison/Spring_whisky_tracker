@@ -22,12 +22,16 @@ public class WhiskyRepositoryImpl implements WhiskyRepositoryCustom {
         List<Whisky> result = null;
 
         Session session = entityManager.unwrap(Session.class);
-        Criteria cr = session.createCriteria(Whisky.class);
-        cr.createAlias("distillery", "distilleryAlias");
-        cr.add(Restrictions.eq("distilleryAlias.id", id));
-        cr.add(Restrictions.eq("age", age));
-        result = cr.list();
-
+        try {
+            Criteria cr = session.createCriteria(Whisky.class);
+            cr.createAlias("distillery", "distilleryAlias");
+            cr.add(Restrictions.eq("distilleryAlias.id", id));
+            cr.add(Restrictions.eq("age", age));
+            result = cr.list();
+        }
+        catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
         return result;
     }
 
